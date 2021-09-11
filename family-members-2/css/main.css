@@ -25,7 +25,7 @@ form {
   margin: auto;
 }
 
-form button {
+button {
   font-weight: 200;
   text-align: center;
   cursor: pointer;
@@ -36,7 +36,11 @@ form button {
   color: #ffffff !important;
   background-color: rgb(38, 76, 89);
   width: 100%;
+}
+
+form button {
   max-width: 350px;
+  margin-bottom: 50px;
 }
 
 input {
@@ -48,6 +52,10 @@ input {
   -webkit-appearance: none;
   border: 1px solid #ddd;
   display: block;
+}
+
+article button {
+  max-width: 100px;
 }
 
 /* ---------- grid container styling ---------- */

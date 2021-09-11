@@ -54,6 +54,8 @@ function appendPersons(persons) {
 			<p>Age: ${person.age}</p>
 			<p>Relation: ${person.relation}</p>
 			<p>Haircolor: ${person.hairColor}</p>
+			<button type="button" name="button" onclick="edit()">Edit</button>
+			<button type="button" name="button" onclick="remove()">Remove</button>
 			</article>`;
 	}
 	document.querySelector("#persons").innerHTML = htmlTemplate;
@@ -118,4 +120,9 @@ function add() {
 
 function edit() {
 	console.log("Edit button clicked");
+}
+
+function remove() {
+	console.log("Remove button clicked");
+
 }
