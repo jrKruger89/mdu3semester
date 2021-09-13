@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>SINGLE PAGE MOVIE WEB APP</title>
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, shrink-to-fit=no"
+        />
+        <meta
+            name="description"
+            content="Get started with HTML, CSS and JavaScript"
+        />
+        <meta name="author" content="Jesper Ring Krüger" />
+        <link rel="stylesheet" href="css/main.css" />
+    </head>
+
+    <body onhashchange="pageChange()">
+        <!-- tabbar navigation -->
+        <nav class="tabbar">
+            <a href="#movies">Movies</a>
+            <a href="#catagories">Catagories</a>
+        </nav>
+
+        <!-- pages -->
+        <!-- movie page -->
+        <section id="movies" class="page">
+            <header class="topbar">
+                <h2>Movies</h2>
+            </header>
+            <section id="movie-section"></section>
+        </section>
+
+        <!-- catagory page -->
+        <section id="catagories" class="page">
+            <header class="topbar">
+                <h2>Catagories</h2>
+            </header>
+        </section>
+
+        <!-- SPA functionality  -->
+        <script src="js/spa.js"></script>
+        <!-- main js file -->
+        <script src="js/main.js"></script>
+    </body>
+</html>
