@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>User CRUD SPA</title>
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, shrink-to-fit=no"
+        />
+        <meta
+            name="description"
+            content="Get started with HTML, CSS and JavaScript"
+        />
+        <meta name="author" content="Rasmus Cederdorff" />
+        <link rel="stylesheet" href="css/main.css" />
+        <link rel="shortcut icon" type="image/png" href="img/favicon.png" />
+    </head>
+
+    <body>
+        <!-- tabbar navigation -->
+        <nav class="tabbar">
+            <a href="#/" class="nav-link">Users</a>
+            <a href="#/create" class="nav-link">Create</a>
+        </nav>
+
+        <!-- pages -->
+        <!-- users page -->
+        <section id="users" class="page">
+            <header class="topbar">
+                <h2>Users</h2>
+                <a href="#/create" class="nav-link right">Create</a>
+            </header>
+            <section id="user_view" class="grid-container"></section>
+        </section>
+
+        <!-- create user page -->
+        <section id="create" class="page">
+            <header class="topbar">
+                <a href="#/" class="nav-link left">Back</a>
+                <h2>Create user</h2>
+            </header>
+            <section class="form_section">
+                <form id="user_create_form">
+                    <input type="text" placeholder="NAME" id="name" required />
+                    <input type="number" placeholder="AGE" id="age" required />
+                    <input
+                        type="email"
+                        placeholder="EMAIL"
+                        id="mail"
+                        required
+                    />
+                    <button type="button" onclick="createUser()">CREATE</button>
+                </form>
+            </section>
+        </section>
+
+        <!-- edit user page -->
+        <section id="update" class="page">
+            <header class="topbar">
+                <a href="#/" class="nav-link left">Back</a>
+                <h2>Update user</h2>
+            </header>
+            <form id="user_update_form">
+                <input
+                    type="text"
+                    placeholder="NAME"
+                    id="name-update"
+                    required
+                />
+                <input
+                    type="number"
+                    placeholder="AGE"
+                    id="age-update"
+                    required
+                />
+                <input
+                    type="email"
+                    placeholder="EMAIL"
+                    id="mail-update"
+                    required
+                />
+                <button type="button" name="button" onclick="updateUser()">
+                    Update User
+                </button>
+            </form>
+        </section>
+
+        <!-- Router functionality  -->
+        <script src="js/router.js"></script>
+        <!-- main js file -->
+        <script src="js/main.js"></script>
+    </body>
+</html>
