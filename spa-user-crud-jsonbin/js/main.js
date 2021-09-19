@@ -2,9 +2,9 @@
 
 const _baseUrl = "https://api.jsonbin.io/v3/b/6142f487aa02be1d44493b6d";
 const _headers = {
-    "X-Master-Key":
-        "$2b$10$yXtf3jr2oK/eU70ltpOs1ers5RS4wtrg6vE5aGxGJIUhMjlrrXOCe",
-    "Content-Type": "application/json",
+	"X-Master-Key":
+		"$2b$10$yXtf3jr2oK/eU70ltpOs1ers5RS4wtrg6vE5aGxGJIUhMjlrrXOCe",
+	"Content-Type": "application/json",
 };
 
 let _users = [];
@@ -15,23 +15,23 @@ let _selectedUser;
  * Fetchs person data from jsonbin
  */
 async function loadUsers() {
-    const url = _baseUrl + "/latest"; // make sure to get the latest version
-    const response = await fetch(url, { headers: _headers });
-    // todo ...
-    const data = await response.json();
-    console.log(data);
-    _users = data.record;
-    appendUsers(_users);
-    //console.log(_users);
+	const url = _baseUrl + "/latest"; // make sure to get the latest version
+	const response = await fetch(url, { headers: _headers });
+	// todo ...
+	const data = await response.json();
+	console.log(data);
+	_users = data.record;
+	appendUsers(_users);
+	//console.log(_users);
 }
 
 loadUsers();
 
 // Append users to the DOM
 let appendUsers = () => {
-    let htmlTemplate = "";
-    for (let user of _users) {
-        htmlTemplate += `
+	let htmlTemplate = "";
+	for (let user of _users) {
+		htmlTemplate += `
         <article class="user_article">
         <h3>${user.name}</h3>
         <p>${user.age}</p>
@@ -40,82 +40,78 @@ let appendUsers = () => {
         <button name="button" onclick="deleteUser(${user.id})">DELETE</button>
         </article>
         `;
-    }
-    document.querySelector("#user_view").innerHTML = htmlTemplate;
+	}
+	document.querySelector("#user_view").innerHTML = htmlTemplate;
 };
 
 // ========== CREATE ==========
 let createUser = async () => {
-    let name_input = document.querySelector("#name");
-    let age_input = document.querySelector("#age");
-    let mail_input = document.querySelector("#mail");
-    const id_input = parseInt(Math.random() * 10000000000);
+	let name_input = document.querySelector("#name");
+	let age_input = document.querySelector("#age");
+	let mail_input = document.querySelector("#mail");
+	const id_input = parseInt(Math.random() * 10000000000);
 
-    const form = document.querySelector("#user_create_form");
+	const form = document.querySelector("#user_create_form");
 
-    const newUser = {
-        name: name_input.value,
-        age: age_input.value,
-        mail: mail_input.value,
-        id: id_input,
-    };
-    _users.push(newUser);
+	const newUser = {
+		name: name_input.value,
+		age: age_input.value,
+		mail: mail_input.value,
+		id: id_input,
+	};
+	_users.push(newUser);
 
-    await updateJSONBIN(_users);
+	await updateJSONBIN(_users);
 
-    navigateTo("users");
-    form.reset();
-};
-
-let editUser = () => {
-    navigateTo("update");
+	navigateTo("users");
+	form.reset();
 };
 
 // ========== UPDATE ==========
 
 let selectUser = (id) => {
-    _selectedUser = _users.find((user) => user.id == id);
+	_selectedUser = _users.find((user) => user.id == id);
 
-    let nameInput = document.querySelector("#name-update");
-    let ageInput = document.querySelector("#age-update");
-    let mailInput = document.querySelector("#mail-update");
+	let nameInput = document.querySelector("#name-update");
+	let ageInput = document.querySelector("#age-update");
+	let mailInput = document.querySelector("#mail-update");
 
-    nameInput.value = _selectedUser.name;
-    ageInput.value = _selectedUser.age;
-    mailInput.value = _selectedUser.mail;
+	nameInput.value = _selectedUser.name;
+	ageInput.value = _selectedUser.age;
+	mailInput.value = _selectedUser.mail;
 
-    navigateTo("#/update");
+	navigateTo("#/update");
 };
 
 let updateUser = async () => {
-    let nameInput = document.querySelector("#name-update");
-    let ageInput = document.querySelector("#age-update");
-    let mailInput = document.querySelector("#mail-update");
+	let nameInput = document.querySelector("#name-update");
+	let ageInput = document.querySelector("#age-update");
+	let mailInput = document.querySelector("#mail-update");
 
-    const form = document.querySelector("#user_update_form");
+	const form = document.querySelector("#user_update_form");
 
-    let index = _users.findIndex((user) => user.id == _selectedUser.id);
+	let index = _users.findIndex((user) => user.id == _selectedUser.id);
 
-    _users[index].name = nameInput.value;
-    _users[index].age = ageInput.value;
-    _users[index].mail = mailInput.value;
+	_users[index].name = nameInput.value;
+	_users[index].age = ageInput.value;
+	_users[index].mail = mailInput.value;
 
-    await updateJSONBIN(_users);
+	await updateJSONBIN(_users);
 
-    form.reset();
+	form.reset();
 
-    navigateTo("#/");
+	navigateTo("#/");
 };
 
 // ========== DELETE ==========
 
 let deleteUser = async (id) => {
-    _selectedUser = _users.find((user) => user.id == id);
-    let result = confirm(`Delete ${_selectedUser.name}?`);
-    if (result === true) {
-        _users = _users.filter((user) => user.id !== id);
-        await updateJSONBIN(_users);
-    }
+	_selectedUser = _users.find((user) => user.id == id);
+	let result = confirm(`Delete ${_selectedUser.name}?`);
+	if (result === true) {
+		_users = _users.filter((user) => user.id !== id);
+		await updateJSONBIN(_users);
+	}
 };
 
 // ========== Services ==========
@@ -124,14 +120,14 @@ let deleteUser = async (id) => {
  * @param {Array} users
  */
 async function updateJSONBIN(users) {
-    // put users array to jsonbin
-    const response = await fetch(_baseUrl, {
-        method: "PUT",
-        headers: _headers,
-        body: JSON.stringify(users),
-    });
-    const result = await response.json();
-    appendUsers(result.record);
+	// put users array to jsonbin
+	const response = await fetch(_baseUrl, {
+		method: "PUT",
+		headers: _headers,
+		body: JSON.stringify(users),
+	});
+	const result = await response.json();
+	appendUsers(result.record);
 }
 
 // ========== Loader ==========
