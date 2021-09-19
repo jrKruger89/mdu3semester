@@ -42,10 +42,12 @@ let appendUsers = () => {
         `;
 	}
 	document.querySelector("#user_view").innerHTML = htmlTemplate;
+	showLoader(false);
 };
 
 // ========== CREATE ==========
 let createUser = async () => {
+	showLoader(true);
 	let name_input = document.querySelector("#name");
 	let age_input = document.querySelector("#age");
 	let mail_input = document.querySelector("#mail");
@@ -63,7 +65,7 @@ let createUser = async () => {
 
 	await updateJSONBIN(_users);
 
-	navigateTo("users");
+	navigateTo("#/");
 	form.reset();
 };
 
@@ -84,6 +86,7 @@ let selectUser = (id) => {
 };
 
 let updateUser = async () => {
+	showLoader(true);
 	let nameInput = document.querySelector("#name-update");
 	let ageInput = document.querySelector("#age-update");
 	let mailInput = document.querySelector("#mail-update");
@@ -103,9 +106,28 @@ let updateUser = async () => {
 	navigateTo("#/");
 };
 
+// ========== Search ==========
+/**
+ * Search for user by name
+ */
+let search = (searchValue) => {
+	searchValue = searchValue.toLowerCase();
+	console.log(searchValue);
+
+	const searchResults = _users.filter((user) => {
+		const name = user.name.toLowerCase();
+		if (name.includes(searchValue)) {
+			return user;
+		}
+	});
+	console.log(searchResults);
+	appendUsers(searchResults);
+};
+
 // ========== DELETE ==========
 
 let deleteUser = async (id) => {
+	showLoader(true);
 	_selectedUser = _users.find((user) => user.id == id);
 	let result = confirm(`Delete ${_selectedUser.name}?`);
 	if (result === true) {
@@ -131,5 +153,14 @@ async function updateJSONBIN(users) {
 }
 
 // ========== Loader ==========
-
-// todo
+/**
+ * Show loader when fetching data
+ */
+let showLoader = (show) => {
+	let loader = document.querySelector("#loader");
+	if (show) {
+		loader.classList.remove("hide");
+	} else {
+		loader.classList.add("hide");
+	}
+};
